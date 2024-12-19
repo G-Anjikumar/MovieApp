@@ -1,6 +1,6 @@
 
-# MovieApp
-An android app built using Jetpack Compose that consumes TVMaze API to display the  popular shows , Actore Details.
+# ShowsApp
+An android app built using Jetpack Compose that consumes TVMaze API to display the  popular shows , Actors Details.
 
 ## API End Point
 [TVMAZE](https://www.tvmaze.com/api)
