@@ -50,7 +50,7 @@ fun SplashScreen(navigate: (String) -> Unit) {
     LaunchedEffect(key1 = true) {
         delay(100)
         isVisible = true
-        delay(5000)
+        delay(3000)
         navigate(Screen.Home.route)
     }
 

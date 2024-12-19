@@ -5,7 +5,22 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="LazyVerticalGridTest">
+      <SelectionState runConfigName="ComposeUITest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="runShowScreenInvalidImageUrl()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="runShowItemNavigationClickTest()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="horizontalCastItem_displaysCorrectData()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="HorizontalItemUITestCase">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="horizontalCastItem_showsErrorIcon_whenImageFailsToLoad()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

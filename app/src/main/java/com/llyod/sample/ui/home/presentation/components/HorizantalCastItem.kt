@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
@@ -76,7 +77,8 @@ fun HorizontalCastItem(
                                 .padding(6.dp)
                                 .height(250.dp)
                                 .clip(RoundedCornerShape(22.dp))
-                                .background(MaterialTheme.colorScheme.primaryContainer),
+                                .background(MaterialTheme.colorScheme.primaryContainer)
+                                .testTag(countryName),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
@@ -94,7 +96,7 @@ fun HorizontalCastItem(
                                 .fillMaxWidth()
                                 .padding(6.dp)
                                 .height(250.dp)
-                                .clip(RoundedCornerShape(22.dp)),
+                                .clip(RoundedCornerShape(22.dp)).testTag(countryName),
                             painter = imageState.painter,
                             contentDescription = name,
                             contentScale = ContentScale.Crop
@@ -108,7 +110,7 @@ fun HorizontalCastItem(
             Column(
                 modifier = Modifier
                     .padding(16.dp)
-                    .fillMaxWidth()
+                    .fillMaxWidth().testTag(name)
             ) {
                 Text(
                     text = name,
@@ -123,7 +125,8 @@ fun HorizontalCastItem(
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = convertDateToFormattedString(birthDay))
+                Text(text = convertDateToFormattedString(birthDay),
+                    modifier = Modifier.testTag(birthDay))
 
                 Spacer(modifier = Modifier.height(8.dp))
 

@@ -56,7 +56,7 @@ fun MainScreen(navController: NavHostController) {
                     text = if (showState.isCurrentShow)
                         stringResource(R.string.shows)
                     else
-                        stringResource(R.string.popular),
+                        stringResource(R.string.actors),
                     fontSize = TextUnit.Unspecified,
                     color = Color.White
                 )
@@ -105,7 +105,7 @@ fun BottomNavigationBar(
             icon = Icons.Rounded.Favorite
         ),
         BottomItem(
-            title = stringResource(R.string.popular),
+            title = stringResource(R.string.actors),
             icon = Icons.Rounded.PlayArrow
         )
     )

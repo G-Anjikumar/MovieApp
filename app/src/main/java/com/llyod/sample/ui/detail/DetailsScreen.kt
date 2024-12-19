@@ -138,7 +138,7 @@ fun DetailsScreen() {
                 ) {
                     Text(
                         modifier = Modifier.padding(start = 16.dp),
-                        text = shows.name,
+                        text = shows.name!!,
                         fontSize = 19.sp,
                         fontWeight = FontWeight.SemiBold
                     )
@@ -150,7 +150,7 @@ fun DetailsScreen() {
                         modifier = Modifier.padding(start = 16.dp)
                     ) {
                         RatingBar(
-                            starsModifier = Modifier.size(18.dp), rating = shows.rating.average / 2
+                            starsModifier = Modifier.size(18.dp), rating = shows.rating?.average!! / 2
                         )
 
                         Text(
@@ -174,7 +174,7 @@ fun DetailsScreen() {
                         modifier = Modifier.padding(start = 16.dp),
                         text = stringResource(R.string.genre)
                     )
-                    repeat(shows.genres.size) {
+                    repeat(shows.genres!!.size) {
                         Spacer(modifier = Modifier.height(2.dp))
                         Card(
                             modifier = Modifier
@@ -227,7 +227,7 @@ fun DetailsScreen() {
         detailsState.shows?.let {
             Text(
                 modifier = Modifier.padding(start = 16.dp),
-                text = Util.removeHtmlTags(it.summary),
+                text = Util.removeHtmlTags(it.summary!!),
                 fontSize = 16.sp,
             )
         }

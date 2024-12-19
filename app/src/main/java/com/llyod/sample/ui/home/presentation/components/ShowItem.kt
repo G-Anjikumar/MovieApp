@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -47,12 +48,12 @@ fun ShowItem(
 ) {
     val imageState = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
-            .data(shows.image.medium)
+            .data(shows.image?.medium)
             .size(Size.ORIGINAL)
             .build()
     ).state
 
-    val defaultColor = MaterialTheme.colorScheme.secondaryContainer
+    val defaultColor = MaterialTheme.colorScheme.primaryContainer
     val dominantColor by remember {
         mutableStateOf(defaultColor)
     }
@@ -71,6 +72,7 @@ fun ShowItem(
                     )
                 )
             )
+            .testTag("Clickable_Show")
             .clickable {
                 navHostController.navigate(Screen.Details.route + "/${shows.id}")
             }
@@ -82,7 +84,8 @@ fun ShowItem(
                     .padding(6.dp)
                     .height(250.dp)
                     .clip(RoundedCornerShape(22.dp))
-                    .background(MaterialTheme.colorScheme.primaryContainer),
+                    .background(MaterialTheme.colorScheme.primaryContainer)
+                    .testTag(shows.name!!),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
@@ -100,18 +103,21 @@ fun ShowItem(
                     .fillMaxWidth()
                     .padding(6.dp)
                     .height(250.dp)
-                    .clip(RoundedCornerShape(22.dp)),
+                    .clip(RoundedCornerShape(22.dp))
+                    .testTag(shows.name!!),
                 painter = imageState.painter,
                 contentDescription = shows.name,
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
             )
         }
 
         Spacer(modifier = Modifier.height(6.dp))
 
         Text(
-            modifier = Modifier.padding(start = 16.dp, end = 8.dp),
-            text = shows.name,
+            modifier = Modifier
+                .padding(start = 16.dp, end = 8.dp)
+                .testTag("Test Show"),
+            text = shows.name!!,
             color = Color.Black,
             fontSize = 15.sp,
             maxLines = 1
@@ -123,12 +129,16 @@ fun ShowItem(
                 .padding(start = 16.dp, bottom = 12.dp, top = 4.dp)
         ) {
             RatingBar(
-                starsModifier = Modifier.size(18.dp),
-                rating = shows.rating.average / 2
+                starsModifier = Modifier
+                    .size(18.dp)
+                    .testTag("4.5"),
+                rating = shows.rating?.average!! / 2
             )
 
             Text(
-                modifier = Modifier.padding(start = 4.dp),
+                modifier = Modifier
+                    .padding(start = 4.dp)
+                    .testTag("Test Show"),
                 text = shows.rating.average.toString().take(3),
                 color = Color.Blue,
                 fontSize = 14.sp,
