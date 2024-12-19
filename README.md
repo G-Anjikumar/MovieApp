@@ -23,6 +23,8 @@ An android app built using Jetpack Compose that consumes TVMaze API to display t
 
 You can install this application to test on your android smartphone. To download the signed application go to your chrome browser and copy-paste the download link:
 
+![Download APK](https://img.shields.io/badge/Download-APK-brightgreen)](https://github.com/G-Anjikumar/MovieApp/releases/download/v0.1.0-alpha/app-debugapk)
+
 ```
-https://github.com/G-Anjikumar/MovieApp/releases/download/v0.1.0-alpha/tmdb-app.apk
+https://github.com/G-Anjikumar/MovieApp/blob/master/release/app-debug.apk
 ```
