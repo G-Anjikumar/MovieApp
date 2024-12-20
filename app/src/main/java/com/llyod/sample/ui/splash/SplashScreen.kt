@@ -93,7 +93,7 @@ fun SplashScreen(navigate: (String) -> Unit) {
                     )
                 }
                 Text(
-                    text = "Movies",
+                    text = "Shows",
                     style = TextStyle(
                         color = Color.White,
                         textAlign = TextAlign.End,
