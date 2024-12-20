@@ -77,14 +77,11 @@ fun MainScreen(navController: NavHostController) {
                     ShowsScreen(
                         navController = navController,
                         showListState = showState,
-                        onEvent = showAndCastViewModel::onEvent,
                     )
                 }
                 composable(Screen.PopularShows.route) {
                     CastScreen(
-                        navController = navController,
                         showListState = showState,
-                        onEvent = showAndCastViewModel::onEvent,
                     )
                 }
             }
