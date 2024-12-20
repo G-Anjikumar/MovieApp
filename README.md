@@ -5,7 +5,7 @@ An android app built using Jetpack Compose that consumes TVMaze API to display t
 ## API End Point
 [TVMAZE](https://www.tvmaze.com/api)
 
-## Tech Stack 🛠
+## Components 🛠
 - [Jetpack Compose](https://developer.android.com/jetpack/compose/) - Jetpack Compose is Android’s modern toolkit for building native UI. It simplifies and accelerates UI development on Android. Quickly bring your app to life with less code, powerful tools, and intuitive Kotlin APIs.
 - [Kotlin](https://kotlinlang.org/) - Officially supported programming language for Android development.
 - [MVVM Architecture](https://developer.android.com/topic/architecture) - A software architecture that removes the tight coupling between components. Most importantly, in this architecture, the children don't have the direct reference to the parent, they only have the reference by observables.
