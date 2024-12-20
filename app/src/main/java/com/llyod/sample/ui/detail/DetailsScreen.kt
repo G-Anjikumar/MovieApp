@@ -31,7 +31,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -44,16 +47,12 @@ import com.llyod.sample.ui.detail.viewmodel.DetailViewModel
 import com.llyod.sample.ui.home.presentation.components.RatingBar
 import com.llyod.sample.utils.Util
 
+@Preview
 @Composable
 fun DetailsScreen() {
 
     val detailsViewModel = hiltViewModel<DetailViewModel>()
     val detailsState = detailsViewModel.detailsState.collectAsState().value
-
-    val backDropImageState = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current).data(detailsState.shows?.image?.medium)
-            .size(Size.ORIGINAL).build()
-    ).state
 
     val posterImageState = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current).data(detailsState.shows?.image?.medium)
@@ -64,51 +63,32 @@ fun DetailsScreen() {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
+            .background(Color.Black)
+            .padding(10.dp)
     ) {
-        if (backDropImageState is AsyncImagePainter.State.Error) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(220.dp)
-                    .background(MaterialTheme.colorScheme.primaryContainer),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    modifier = Modifier.size(70.dp),
-                    imageVector = Icons.Rounded.ImageNotSupported,
-                    contentDescription = detailsState.shows?.name
-                )
-            }
-        }
-
-        if (backDropImageState is AsyncImagePainter.State.Success) {
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(220.dp),
-                painter = backDropImageState.painter,
-                contentDescription = detailsState.shows?.name,
-                contentScale = ContentScale.Crop
-            )
-        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
+                .align(alignment = Alignment.CenterHorizontally)
         ) {
             Box(
                 modifier = Modifier
                     .width(160.dp)
-                    .height(240.dp)
+                    .fillMaxSize()
+                    .fillMaxWidth()
+                    .height(240.dp),
+                contentAlignment = Alignment.Center
             ) {
                 if (posterImageState is AsyncImagePainter.State.Error) {
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
-                            .clip(RoundedCornerShape(12.dp))
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(20.dp))
                             .background(MaterialTheme.colorScheme.primaryContainer),
                         contentAlignment = Alignment.Center
                     ) {
@@ -123,14 +103,17 @@ fun DetailsScreen() {
                 if (posterImageState is AsyncImagePainter.State.Success) {
                     Image(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .clip(RoundedCornerShape(12.dp)),
+                            .fillMaxWidth()
+                            .height(300.dp)
+                            .clip(RoundedCornerShape(20.dp)),
                         painter = posterImageState.painter,
                         contentDescription = detailsState.shows?.name,
                         contentScale = ContentScale.Crop
                     )
                 }
             }
+
+            Spacer(modifier = Modifier.height(18.dp))
 
             detailsState.shows?.let { shows ->
                 Column(
@@ -140,7 +123,8 @@ fun DetailsScreen() {
                         modifier = Modifier.padding(start = 16.dp),
                         text = shows.name!!,
                         fontSize = 19.sp,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.White
                     )
 
 
@@ -150,13 +134,14 @@ fun DetailsScreen() {
                         modifier = Modifier.padding(start = 16.dp)
                     ) {
                         RatingBar(
-                            starsModifier = Modifier.size(18.dp), rating = shows.rating?.average!! / 2
+                            starsModifier = Modifier.size(18.dp),
+                            rating = shows.rating?.average!! / 2
                         )
 
                         Text(
                             modifier = Modifier.padding(start = 4.dp),
                             text = shows.rating.toString().take(3),
-                            color = Color.LightGray,
+                            color = Color.White,
                             fontSize = 14.sp,
                             maxLines = 1,
                         )
@@ -166,13 +151,15 @@ fun DetailsScreen() {
 
                     Text(
                         modifier = Modifier.padding(start = 16.dp),
-                        text = stringResource(R.string.language) + shows.language
+                        text = stringResource(R.string.language) + shows.language,
+                        color = Color.White
                     )
                     Spacer(modifier = Modifier.height(12.dp))
 
                     Text(
                         modifier = Modifier.padding(start = 16.dp),
-                        text = stringResource(R.string.genre)
+                        text = stringResource(R.string.genre),
+                        color = Color.White
                     )
                     repeat(shows.genres!!.size) {
                         Spacer(modifier = Modifier.height(2.dp))
@@ -184,7 +171,7 @@ fun DetailsScreen() {
                                 .padding(5.dp),
                             shape = RoundedCornerShape(10.dp),
                         ) {
-                            Row(
+                            Column(
                                 modifier = Modifier
                                     .padding(start = 5.dp)
                                     .align(Alignment.CenterHorizontally)
@@ -192,7 +179,14 @@ fun DetailsScreen() {
                                 Text(
                                     modifier = Modifier.padding(start = 4.dp),
                                     text = shows.genres[it],
-                                    color = Color.White,
+                                    color = Color.Black,
+                                    fontFamily = FontFamily(
+                                        Font(
+                                            R.font.poppins_bold,
+                                            FontWeight.Bold
+                                        )
+                                    ),
+                                    fontWeight = FontWeight.Bold,
                                     fontSize = 14.sp,
                                     maxLines = 1,
                                     style = MaterialTheme.typography.displayMedium
@@ -205,7 +199,8 @@ fun DetailsScreen() {
 
                     Text(
                         modifier = Modifier.padding(start = 16.dp),
-                        text = stringResource(R.string.release_by) + shows.premiered
+                        text = stringResource(R.string.release_by) + shows.premiered,
+                        color = Color.White
                     )
 
                     Spacer(modifier = Modifier.height(5.dp))
@@ -219,7 +214,8 @@ fun DetailsScreen() {
             modifier = Modifier.padding(start = 16.dp),
             text = "Overview",
             fontSize = 19.sp,
-            fontWeight = FontWeight.SemiBold
+            fontWeight = FontWeight.SemiBold,
+            color = Color.White
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -229,6 +225,7 @@ fun DetailsScreen() {
                 modifier = Modifier.padding(start = 16.dp),
                 text = Util.removeHtmlTags(it.summary!!),
                 fontSize = 16.sp,
+                color = Color.White
             )
         }
 

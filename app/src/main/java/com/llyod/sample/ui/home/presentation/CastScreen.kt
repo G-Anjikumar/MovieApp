@@ -12,15 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.llyod.sample.ui.home.presentation.components.HorizontalCastItem
 import com.llyod.sample.ui.home.viewmodel.ShowListState
 
 @Composable
 fun CastScreen(
     showListState: ShowListState,
-    navController: NavHostController,
-    onEvent: (ShowListUiState) -> Unit
 ) {
 
     if (showListState.isLoading) {
@@ -38,11 +35,10 @@ fun CastScreen(
         ) {
             items(showListState.caseList.size) { index ->
                 HorizontalCastItem(
-                    showListState.caseList[index].person.name ?: "NA",
-                    showListState.caseList[index].person.country.name ?: "NA",
-                    showListState.caseList[index].person.image.medium ?: "NA",
-                    showListState.caseList[index].person.birthday ?: "NA",
-                    onEvent
+                    showListState.caseList[index].person.name,
+                    showListState.caseList[index].person.country.name,
+                    showListState.caseList[index].person.image.medium,
+                    showListState.caseList[index].person.birthday,
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 

@@ -21,7 +21,6 @@ class ShowAndCastViewModel @Inject constructor(
 ) : ViewModel() {
     private var _showListState = MutableStateFlow(ShowListState())
     var showListState = _showListState.asStateFlow()
-    var searchState = MutableStateFlow(String)
 
     init {
         getShowList()
@@ -109,12 +108,6 @@ class ShowAndCastViewModel @Inject constructor(
             }
         }
     }
-
-    fun searchEvent(search: String) {
-
-    }
-
-
 }
 
 data class ShowListState(

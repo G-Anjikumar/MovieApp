@@ -30,7 +30,8 @@ class ComposeUITest {
                 medium = "https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg",
                 original = ""
             ),
-            rating = Rating(average = 4.5)
+            rating = Rating(average = 4.5),
+            premiered = "2013-06-24"
         )
         lateinit var navController: NavHostController
         composeRule.setContent {
@@ -38,11 +39,11 @@ class ComposeUITest {
             ShowItem(shows = mockShow, navHostController = navController)
         }
 
-        composeRule.onNodeWithText("Test Show").assertIsDisplayed()
+        composeRule.onNodeWithText(mockShow.name!!).assertIsDisplayed()
 
-        composeRule.onNodeWithText("Test Show").assertIsDisplayed()
+        composeRule.onNodeWithText(mockShow.name!!).assertIsDisplayed()
 
-        composeRule.onNodeWithText("4.5").assertIsDisplayed()
+        composeRule.onNodeWithText(mockShow.premiered!!).assertIsDisplayed()
     }
 
     @Test
@@ -51,7 +52,8 @@ class ComposeUITest {
             id = 1,
             name = "Test Show",
             image = Image(medium = "Invalid Url", original = ""),
-            rating = Rating(average = 4.5)
+            rating = Rating(average = 4.5),
+            premiered = "2013-06-24"
         )
 
         composeRule.setContent {

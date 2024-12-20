@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface ShowListRepository {
 
-    fun getShowList() : Flow<Response<List<Shows>>>
+    fun getShowList(): Flow<Response<List<Shows>>>
 
-    fun getCastList() : Flow<Response<List<Cast>>>
+    fun getCastList(): Flow<Response<List<Cast>>>
 
-    fun getShow(id:Int) : Flow<Response<Shows>>
+    fun getShow(id: Int): Flow<Response<Shows>>
 }

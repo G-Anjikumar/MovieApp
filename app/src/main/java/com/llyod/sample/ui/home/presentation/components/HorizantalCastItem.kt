@@ -34,7 +34,6 @@ import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
-import com.llyod.sample.ui.home.presentation.ShowListUiState
 import com.llyod.sample.utils.Util.convertDateToFormattedString
 
 @Composable
@@ -43,7 +42,6 @@ fun HorizontalCastItem(
     countryName: String,
     imageUrl: String,
     birthDay: String,
-    onEvent: (ShowListUiState) -> Unit,
 ) {
     val imageState = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
@@ -96,7 +94,8 @@ fun HorizontalCastItem(
                                 .fillMaxWidth()
                                 .padding(6.dp)
                                 .height(250.dp)
-                                .clip(RoundedCornerShape(22.dp)).testTag(countryName),
+                                .clip(RoundedCornerShape(22.dp))
+                                .testTag(countryName),
                             painter = imageState.painter,
                             contentDescription = name,
                             contentScale = ContentScale.Crop
@@ -110,7 +109,8 @@ fun HorizontalCastItem(
             Column(
                 modifier = Modifier
                     .padding(16.dp)
-                    .fillMaxWidth().testTag(name)
+                    .fillMaxWidth()
+                    .testTag(name)
             ) {
                 Text(
                     text = name,
@@ -125,11 +125,12 @@ fun HorizontalCastItem(
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = convertDateToFormattedString(birthDay),
-                    modifier = Modifier.testTag(birthDay))
+                Text(
+                    text = convertDateToFormattedString(birthDay),
+                    modifier = Modifier.testTag(birthDay)
+                )
 
                 Spacer(modifier = Modifier.height(8.dp))
-
             }
         }
     }

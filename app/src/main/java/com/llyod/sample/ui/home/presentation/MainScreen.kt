@@ -42,7 +42,6 @@ fun MainScreen(navController: NavHostController) {
     val bottomNavController = rememberNavController()
     val showAndCastViewModel: ShowAndCastViewModel = hiltViewModel()
     val showState = showAndCastViewModel.showListState.collectAsState().value
-    val search = showAndCastViewModel.searchState.collectAsState().value
 
     Scaffold(bottomBar = {
         BottomNavigationBar(
@@ -79,7 +78,6 @@ fun MainScreen(navController: NavHostController) {
                         navController = navController,
                         showListState = showState,
                         onEvent = showAndCastViewModel::onEvent,
-                        searchEvent = showAndCastViewModel::searchEvent
                     )
                 }
                 composable(Screen.PopularShows.route) {
@@ -122,11 +120,13 @@ fun BottomNavigationBar(
                         when (selected.intValue) {
                             0 -> {
                                 onEvent(ShowListUiState.Navigate)
+                                bottomNavController.popBackStack()
                                 bottomNavController.navigate(Screen.Home.route)
                             }
 
                             1 -> {
                                 onEvent(ShowListUiState.Paginate)
+                                bottomNavController.popBackStack()
                                 bottomNavController.navigate(Screen.PopularShows.route)
                             }
 
