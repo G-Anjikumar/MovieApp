@@ -118,13 +118,17 @@ fun BottomNavigationBar(
                             0 -> {
                                 onEvent(ShowListUiState.Navigate)
                                 bottomNavController.popBackStack()
-                                bottomNavController.navigate(Screen.Home.route)
+                                bottomNavController.navigate(Screen.Home.route){
+                                    launchSingleTop = true
+                                }
                             }
 
                             1 -> {
                                 onEvent(ShowListUiState.Paginate)
                                 bottomNavController.popBackStack()
-                                bottomNavController.navigate(Screen.PopularShows.route)
+                                bottomNavController.navigate(Screen.PopularShows.route){
+                                    launchSingleTop =true
+                                }
                             }
 
                         }
