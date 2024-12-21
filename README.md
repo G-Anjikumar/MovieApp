@@ -30,6 +30,6 @@ An android app built using Jetpack Compose that consumes TVMaze API to display t
 - [Retrofit](https://github.com/square/retrofit) - A type-safe HTTP client for Android and Java.
 - [OkHttp Logging Interceptor](https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor/README.md) - Logs HTTP request and response data.
 
-You can install this application to test on your android smartphone. To download the signed application go to your chrome browser and copy-paste the download link:
+You can install this application to test on your android smartphone. To download the application go to your chrome browser and copy-paste the download link:
 
 ![Download APK](https://img.shields.io/badge/Download-APK-brightgreen)(https://github.com/G-Anjikumar/MovieApp/releases/download/staging/Shows_Final.apk)
