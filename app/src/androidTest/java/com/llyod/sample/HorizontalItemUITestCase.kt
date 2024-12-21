@@ -26,7 +26,6 @@ class HorizontalItemUITestCase {
                 countryName = countryName,
                 imageUrl = imageUrl,
                 birthDay = birthDay,
-                onEvent = {}
             )
         }
 
@@ -49,7 +48,6 @@ class HorizontalItemUITestCase {
                 countryName = countryName,
                 imageUrl = imageUrl,
                 birthDay = birthDay,
-                onEvent = {}
             )
         }
 
