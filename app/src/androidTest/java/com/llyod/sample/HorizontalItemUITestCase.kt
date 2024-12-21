@@ -30,9 +30,7 @@ class HorizontalItemUITestCase {
         }
 
         composeTestRule.onNodeWithText(name).assertIsDisplayed()
-
-        val formatDate = Util.convertDateToFormattedString(birthDay)
-        composeTestRule.onNodeWithText(formatDate).assertIsDisplayed()
+        composeTestRule.onNodeWithText(birthDay).assertIsDisplayed()
     }
 
     @Test
