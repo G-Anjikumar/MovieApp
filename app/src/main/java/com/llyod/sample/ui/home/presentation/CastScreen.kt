@@ -35,10 +35,10 @@ fun CastScreen(
         ) {
             items(showListState.caseList.size) { index ->
                 HorizontalCastItem(
-                    showListState.caseList[index].person.name,
-                    showListState.caseList[index].person.country.name,
-                    showListState.caseList[index].person.image.medium,
-                    showListState.caseList[index].person.birthday,
+                    showListState.caseList[index].person.name ?: "",
+                    showListState.caseList[index].person.country.name ?: "",
+                    showListState.caseList[index].person.image.medium ?: "",
+                    showListState.caseList[index].person.birthday ?: ""
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 

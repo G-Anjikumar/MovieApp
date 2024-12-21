@@ -5,4 +5,5 @@
     <string name="language">Language :</string>
     <string name="release_by">"Release Date : "</string>
     <string name="genre">"Genre "</string>
+    <string name="country_name">Country Name : %1$s</string>
 </resources>

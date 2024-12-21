@@ -1,5 +1,6 @@
 package com.llyod.sample.ui.home.presentation.components
 
+import android.text.TextUtils
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,16 +26,21 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
-import com.llyod.sample.utils.Util.convertDateToFormattedString
+import com.llyod.sample.R
 
 @Composable
 fun HorizontalCastItem(
@@ -115,19 +121,28 @@ fun HorizontalCastItem(
                 Text(
                     text = name,
                     maxLines = 1,
-                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                    color = Color.Black,
+                    fontSize = 15.sp,
+                    fontFamily = FontFamily(Font(R.font.poppins_bold, FontWeight.Bold)),
+                    fontWeight = FontWeight.Bold,
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "",
+                    text = countryName,
                     maxLines = 3,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
+                    color = Color.Black,
+                    fontSize = 12.sp,
+                    fontFamily = FontFamily(Font(R.font.poppins_medium, FontWeight.Black))
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = convertDateToFormattedString(birthDay),
-                    modifier = Modifier.testTag(birthDay)
+                    text = if(!TextUtils.isEmpty(birthDay)) birthDay else "NA",
+                    modifier = Modifier.testTag(if(!TextUtils.isEmpty(birthDay)) birthDay else "NA"),
+                    color = Color.Black,
+                    fontSize = 12.sp,
+                    fontFamily = FontFamily(Font(R.font.poppins_medium, FontWeight.Black))
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
