@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">lloyd sample</string>
+    <string name="actors">Actors</string>
+    <string name="shows">Shows</string>
+    <string name="language">Language :</string>
+    <string name="release_by">"Release Date : "</string>
+    <string name="genre">"Genre "</string>
+    <string name="country_name">Country Name : %1$s</string>
+</resources>

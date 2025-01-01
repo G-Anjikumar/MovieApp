@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "lloyb sample"
 include(":app")
- 
+include(":RemoteSDK")
+include(":Features")
