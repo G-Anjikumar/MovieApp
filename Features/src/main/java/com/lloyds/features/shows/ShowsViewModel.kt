@@ -23,40 +23,21 @@ class ShowsViewModel @Inject constructor(
     init {
         getShowList()
     }
-    fun getShowList() {
+
+    private fun getShowList() {
         viewModelScope.launch {
-            uiState.update {
-                it.copy(isLoading = true)
-            }
-            uiState.update {
-                it.copy(
-                    isCurrentShow = !showListState.value.isCurrentShow
-                )
-            }
             showListRepository.getShowList().collectLatest { response ->
-                when (response) {
-                    is Response.Loading -> {
-                        uiState.update {
-                            UiState(isLoading = true)
-                        }
-                    }
+                val updateUiState = when (response) {
+                    is Response.Loading -> UiState(isLoading = true)
+                    is Response.Success -> UiState(
+                        isLoading = false,
+                        showsList = response.data ?: emptyList(),
+                        isCurrentShow = !showListState.value.isCurrentShow
+                    )
 
-                    is Response.Error -> {
-                        uiState.update {
-                            UiState(isLoading = false, error = it.error)
-                        }
-                    }
-
-                    is Response.Success -> {
-                        uiState.update {
-                            UiState(
-                                isLoading = false,
-                                showsList = response.data ?: emptyList(),
-                                isCurrentShow = !showListState.value.isCurrentShow
-                            )
-                        }
-                    }
+                    is Response.Error -> UiState(isLoading = false, error = response.message)
                 }
+                uiState.update { updateUiState }
             }
         }
     }

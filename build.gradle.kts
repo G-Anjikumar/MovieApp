@@ -7,4 +7,5 @@ plugins {
     alias(libs.plugins.google.service) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.android.library) apply false
+    ("com.android.tools.build:gradle:8.1.0")
 }

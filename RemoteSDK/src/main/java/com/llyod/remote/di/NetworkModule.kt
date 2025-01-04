@@ -1,7 +1,6 @@
 package com.llyod.remote.di
 
 import com.llyod.remote.data.remote.FetchData
-import com.llyod.remote.interceptor.HttpRequestInterceptor
 import com.llyod.remote.utils.AppConstants
 import dagger.Module
 import dagger.Provides
@@ -31,7 +30,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit) : FetchData{
+    fun provideApiService(retrofit: Retrofit): FetchData {
         return retrofit.create(FetchData::class.java)
     }
 
@@ -42,7 +41,6 @@ object NetworkModule {
             .connectTimeout(15L, TimeUnit.SECONDS)
             .readTimeout(15L, TimeUnit.SECONDS)
             .writeTimeout(15L, TimeUnit.SECONDS)
-            .addInterceptor(HttpRequestInterceptor())
             .build()
     }
 }

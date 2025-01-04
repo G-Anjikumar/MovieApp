@@ -20,8 +20,8 @@ class DetailViewModel @Inject constructor(
 ) : ViewModel() {
     private val showId = savedStateHandle.get<Int>("showId")
 
-    private var _detialsState = MutableStateFlow(DetailsState())
-    val detailsState = _detialsState.asStateFlow()
+    private var detailState = MutableStateFlow(DetailsState())
+    val detailsState = detailState.asStateFlow()
 
     init {
         getMovie(showId ?: -1)
@@ -29,32 +29,17 @@ class DetailViewModel @Inject constructor(
 
     private fun getMovie(showId: Int) {
         viewModelScope.launch {
-            _detialsState.update {
-                it.copy(isLoading = true)
-            }
             showListRepository.getShow(showId).collectLatest { response ->
-                when (response) {
-                    is Response.Loading -> {
-                        _detialsState.update {
-                            DetailsState(isLoading = true)
-                        }
-                    }
+                val updateUiState = when (response) {
+                    is Response.Loading -> DetailsState(isLoading = true)
+                    is Response.Success -> DetailsState(
+                        isLoading = false,
+                        shows = response.data
+                    )
 
-                    is Response.Error -> {
-                        _detialsState.update {
-                            DetailsState(isLoading = false)
-                        }
-                    }
-
-                    is Response.Success -> {
-                        _detialsState.update {
-                            DetailsState(
-                                isLoading = false,
-                                shows = response.data
-                            )
-                        }
-                    }
+                    is Response.Error -> DetailsState(isLoading = false)
                 }
+                detailState.update { updateUiState }
             }
         }
     }

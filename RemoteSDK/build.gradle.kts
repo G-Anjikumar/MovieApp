@@ -52,6 +52,9 @@ dependencies {
     implementation(libs.androidx.hilt.work)
     implementation(libs.google.dagger.hilt.android)
     ksp(libs.google.dagger.hilt.android.compiler)
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.11.0")
 
     // Retrofit
     implementation(libs.bundles.retrofit2)

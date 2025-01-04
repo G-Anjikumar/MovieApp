@@ -1,12 +1,11 @@
 package com.llyod.remote.di
 
-import com.llyod.remote.data.remote.FetchData
 import com.llyod.remote.data.repository.CastRepositoryImplemented
 import com.llyod.remote.data.repository.ShowListRepositoryImpl
 import com.llyod.remote.domain.repository.CastRepository
 import com.llyod.remote.domain.repository.ShowListRepository
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
@@ -14,16 +13,13 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
+abstract class RepositoryModule {
 
-    @Provides
+    @Binds
     @Singleton
-    fun provideShowRepo(fetchData: FetchData): ShowListRepository =
-        ShowListRepositoryImpl(fetchData)
+    abstract fun provideShowRepo(showListRepositoryImpl: ShowListRepositoryImpl): ShowListRepository
 
-
-    @Provides
+    @Binds
     @Singleton
-    fun provideCastRepo(fetchData: FetchData): CastRepository =
-        CastRepositoryImplemented(fetchData)
+    abstract fun provideCastRepo(castRepositoryImplemented: CastRepositoryImplemented): CastRepository
 }

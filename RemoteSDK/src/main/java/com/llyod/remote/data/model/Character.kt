@@ -1,7 +1,7 @@
 package com.llyod.remote.data.model
 
 data class Character(
-    val _links: LinksX,
+    val linksX: LinksX,
     val id: Int,
     val image: ImageX,
     val name: String,

@@ -14,6 +14,7 @@ android {
         minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner = "dagger.hilt.android.testing.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -51,11 +52,15 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+//    implementation(libs.androidx.junit.ktx)
+    implementation(libs.androidx.ui.test.junit4)
     testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
     implementation(libs.androidx.ui.graphics)
     implementation(project(":RemoteSDK"))
     implementation(libs.androidx.ui.tooling.preview)
@@ -63,6 +68,8 @@ dependencies {
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
     // Hilt
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.hilt.work)
@@ -77,5 +84,17 @@ dependencies {
 
     // system UI Controller
     implementation(libs.accompanist.systemuicontroller)
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+    testImplementation("com.google.dagger:hilt-android-testing:2.48")
+//    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48")
+    // For instrumentation tests
+//    androidTestImplementation ("org.mockito:mockito-android:5.4.0")
+//    androidTestImplementation ("org.mockito:mockito-inline:5.4.0")
+//    androidTestImplementation ("org.mockito.kotlin:mockito-kotlin:5.0.0")
+    testImplementation("org.mockito:mockito-core:5.5.0")
 
+    // Mockito Kotlin extension
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
+    testImplementation("app.cash.turbine:turbine:0.12.1")
+    testImplementation ("org.mockito:mockito-inline:4.8.0")
 }

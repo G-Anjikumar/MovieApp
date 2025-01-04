@@ -16,42 +16,27 @@ import javax.inject.Inject
 @HiltViewModel
 class CastViewModel @Inject constructor(
     private val castRepository: CastRepository
-) : ViewModel(){
+) : ViewModel() {
 
     private var uiState = MutableStateFlow(UiState())
     var castListState = uiState.asStateFlow()
+
     init {
         getCastList()
     }
     fun getCastList() {
         viewModelScope.launch {
-            uiState.update {
-                it.copy(isLoading = true)
-            }
             castRepository.getCastList().collectLatest { response ->
-                when (response) {
-                    is Response.Loading -> {
-                        uiState.update {
-                            UiState(isLoading = true)
-                        }
-                    }
-
-                    is Response.Error -> {
-                        uiState.update {
-                            UiState(isLoading = false, error = it.error)
-                        }
-                    }
-
-                    is Response.Success -> {
-                        uiState.update {
-                            UiState(
-                                isLoading = false,
-                                caseList = response.data ?: emptyList(),
-                                isCurrentShow = !castListState.value.isCurrentShow
-                            )
-                        }
-                    }
+                val updatedUiState = when (response) {
+                    is Response.Loading -> UiState(isLoading = true)
+                    is Response.Error -> UiState(isLoading = false, error = response.message)
+                    is Response.Success -> UiState(
+                        isLoading = false,
+                        caseList = response.data.orEmpty(),
+                        isCurrentShow = !castListState.value.isCurrentShow
+                    )
                 }
+                uiState.update { updatedUiState }
             }
         }
     }

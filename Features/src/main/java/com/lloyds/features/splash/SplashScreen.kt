@@ -51,7 +51,7 @@ fun SplashScreen(navigate: (String) -> Unit) {
         delay(100)
         isVisible = true
         delay(2500)
-        navigate(Screen.Home.route)
+        navigate(Screen.Shows.route)
     }
 
     Column(

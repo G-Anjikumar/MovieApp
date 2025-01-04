@@ -8,8 +8,8 @@ google-hilt = "2.48.1"
 google-services = "4.3.15"
 google-ksp = "1.9.20-1.0.14"
 junit = "4.13.2"
-junitVersion = "1.2.1"
-espressoCore = "3.6.1"
+junitVersion = "1.1.5"
+espressoCore = "3.5.0"
 kotlinxSerializationRuntime = "0.20.0"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
@@ -28,6 +28,8 @@ okhttp3 = "4.11.0"
 retrofit2 = "2.9.0"
 appcompat = "1.7.0"
 material = "1.12.0"
+#junitKtx = "1.2.1"
+uiTestJunit4Android = "1.7.6"
 
 
 [libraries]
@@ -69,6 +71,8 @@ google-dagger-hilt-android-compiler = { group = "com.google.dagger", name = "hil
 androidx-work-runtime-ktx = "androidx.work:work-runtime-ktx:2.8.1"
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+#androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitVersion" }
+#androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4Android" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -1,4 +1,4 @@
-package com.llyod.sample
+package com.llyod.sample.ui
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -7,10 +7,10 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.llyod.sample.data.remote.model.Image
-import com.llyod.sample.data.remote.model.Rating
-import com.llyod.sample.data.remote.model.Shows
-import com.llyod.sample.ui.home.presentation.components.ShowItem
+import com.lloyds.features.shows.ShowItem
+import com.llyod.remote.data.model.Image
+import com.llyod.remote.data.model.Rating
+import com.llyod.remote.data.model.Shows
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

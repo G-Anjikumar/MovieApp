@@ -5,6 +5,5 @@ import com.llyod.remote.utils.Response
 import kotlinx.coroutines.flow.Flow
 
 interface CastRepository {
-
     fun getCastList(): Flow<Response<List<Cast>>>
 }

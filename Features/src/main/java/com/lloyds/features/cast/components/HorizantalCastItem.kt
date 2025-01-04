@@ -138,8 +138,8 @@ fun HorizontalCastItem(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = if(!TextUtils.isEmpty(birthDay)) birthDay else "NA",
-                    modifier = Modifier.testTag(if(!TextUtils.isEmpty(birthDay)) birthDay else "NA"),
+                    text = if (!TextUtils.isEmpty(birthDay)) birthDay else "NA",
+                    modifier = Modifier.testTag(if (!TextUtils.isEmpty(birthDay)) birthDay else "NA"),
                     color = Color.Black,
                     fontSize = 12.sp,
                     fontFamily = FontFamily(Font(R.font.poppins_medium, FontWeight.Black))

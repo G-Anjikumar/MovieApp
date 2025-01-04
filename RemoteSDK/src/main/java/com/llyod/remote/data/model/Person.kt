@@ -1,7 +1,7 @@
 package com.llyod.remote.data.model
 
 data class Person(
-    val _links: Links,
+    val links: Links,
     val birthday: String,
     val country: Country,
     val deathday: Any,

@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.lloyds.features.navdrawer.MainNavHost
-import com.lloyds.features.utils.Screen
 import com.llyod.sample.ui.theme.LloybSampleTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,7 +30,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    MainNavHost(navController = navController, route = Screen.Splash.route)
+                    MainNavHost(navController = navController)
                 }
             }
         }
