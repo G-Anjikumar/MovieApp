@@ -14,6 +14,10 @@ An android app built using Jetpack Compose that consumes TVMaze API to display t
   <img src="https://github.com/G-Anjikumar/MovieApp/blob/0bf2ed113a09852a3264ce8d4bacbfccfc4da10c/actors.png" alt="actors screen" width="200"/>
 </p>
 
+## Features
+- Unit test case for UI,Repository and Viewmodel
+- Added multi Modular
+  
 ## Components 🛠
 - [Jetpack Compose](https://developer.android.com/jetpack/compose/) - Jetpack Compose is Android’s modern toolkit for building native UI. It simplifies and accelerates UI development on Android. Quickly bring your app to life with less code, powerful tools, and intuitive Kotlin APIs.
 - [Kotlin](https://kotlinlang.org/) - Officially supported programming language for Android development.
