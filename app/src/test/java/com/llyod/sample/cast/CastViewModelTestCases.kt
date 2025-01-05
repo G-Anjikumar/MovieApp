@@ -12,16 +12,13 @@ import com.llyod.remote.data.model.Person
 import com.llyod.remote.data.model.Previousepisode
 import com.llyod.remote.data.model.Self
 import com.llyod.remote.data.model.SelfX
-import com.llyod.remote.data.remote.FetchData
-import com.llyod.remote.data.repository.CastRepositoryImplemented
 import com.llyod.remote.domain.repository.CastRepository
+import com.llyod.remote.utils.AppConstants
 import com.llyod.remote.utils.Response
 import com.llyod.remote.utils.UiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
@@ -32,17 +29,15 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
-import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
 
-class UnitestExample {
+class CastViewModelTestCases {
 
     @Mock
     private lateinit var castRepository: CastRepository
-    private lateinit var viewModel : CastViewModel
+    private lateinit var viewModel: CastViewModel
     private val testDispatcher = StandardTestDispatcher()
     private val castListMock = listOf(
         Cast(
@@ -96,14 +91,17 @@ class UnitestExample {
             voice = false
         ),
     )
+
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
         Dispatchers.setMain(testDispatcher)
-//        fectchData = mock()
-//        repository= CastRepositoryImplemented(fectchData)
         viewModel = CastViewModel(castRepository)
+        whenever(castRepository.getCastList()).thenReturn(flow {
+            emit(Response.Loading())
+            emit(Response.Success(castListMock))
+        })
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -114,11 +112,7 @@ class UnitestExample {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun `getCastList_emits_loading_and_success_states`():Unit = runTest {
-        whenever(castRepository.getCastList()).thenReturn(flow {
-            emit(Response.Loading())
-            emit(Response.Success(castListMock))
-        })
+    fun getCastList_emits_loading_and_success_states(): Unit = runTest {
         viewModel.castListState.test {
             assertEquals(UiState(), awaitItem())
             advanceUntilIdle()
@@ -130,6 +124,48 @@ class UnitestExample {
                     caseList = castListMock,
                     isCurrentShow = false
                 ),
+                awaitItem()
+            )
+        }
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun getCastList_emits_loading_and_empty_states() = runTest {
+        whenever(castRepository.getCastList()).thenReturn(flow {
+            emit(Response.Loading())
+            emit(Response.Success(emptyList()))
+        })
+        viewModel = CastViewModel(castRepository)
+
+        viewModel.castListState.test {
+            assertEquals(UiState(), awaitItem())
+            advanceUntilIdle()
+            viewModel.getCastList()
+            assertEquals(UiState(isLoading = true), awaitItem())
+            assertEquals(
+                UiState(isLoading = false, caseList = emptyList(), isCurrentShow = false),
+                awaitItem()
+            )
+        }
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun getCastList_emits_loading_and_error_states() = runTest {
+        whenever(castRepository.getCastList()).thenReturn(flow {
+            emit(Response.Loading())
+            emit(Response.Error(AppConstants.API_ERROR_MESSAGE))
+        })
+        viewModel = CastViewModel(castRepository)
+
+        viewModel.castListState.test {
+            assertEquals(UiState(), awaitItem())
+            advanceUntilIdle()
+            viewModel.getCastList()
+            assertEquals(UiState(isLoading = true), awaitItem())
+            assertEquals(
+                UiState(isLoading = false, error = AppConstants.API_ERROR_MESSAGE),
                 awaitItem()
             )
         }

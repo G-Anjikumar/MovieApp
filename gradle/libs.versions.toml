@@ -2,6 +2,7 @@
 accompanistSystemuicontroller = "0.27.0"
 agp = "8.4.1"
 coilCompose = "2.7.0"
+hiltAndroidTestingVersion = "2.48"
 kotlin = "1.9.0"
 coreKtx = "1.12.0"
 google-hilt = "2.48.1"
@@ -10,6 +11,7 @@ google-ksp = "1.9.20-1.0.14"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.0"
+kotlinxCoroutinesTest = "1.7.1"
 kotlinxSerializationRuntime = "0.20.0"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
@@ -19,6 +21,11 @@ androidx-hilt = "1.1.0"
 google-dagger = "2.48"
 
 materialIconsExtended = "1.5.4"
+mockitoAndroid = "5.4.0"
+mockitoCore = "5.5.0"
+mockitoKotlin = "5.0.0"
+mockitoKotlinVersion = "4.1.0"
+turbine = "0.12.1"
 workmanager="2.7.0-alpha05"
 
 kotlin-android = "1.9.0"
@@ -30,6 +37,7 @@ appcompat = "1.7.0"
 material = "1.12.0"
 #junitKtx = "1.2.1"
 uiTestJunit4Android = "1.7.6"
+junitKtx = "1.2.1"
 
 
 [libraries]
@@ -37,6 +45,7 @@ accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
+dagger-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTestingVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -52,7 +61,12 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
 # Okhttp
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 kotlinx-serialization-runtime = { module = "org.jetbrains.kotlinx:kotlinx-serialization-runtime", version.ref = "kotlinxSerializationRuntime" }
+mockito-android = { module = "org.mockito:mockito-android", version.ref = "mockitoAndroid" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+mockito-kotlin-v410 = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlinVersion" }
 okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3" }
 okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3" }
 # Retrofit
@@ -71,6 +85,8 @@ google-dagger-hilt-android-compiler = { group = "com.google.dagger", name = "hil
 androidx-work-runtime-ktx = "androidx.work:work-runtime-ktx:2.8.1"
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 #androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitVersion" }
 #androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4Android" }
 

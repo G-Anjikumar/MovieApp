@@ -5,8 +5,8 @@ import com.llyod.remote.data.model.Rating
 import com.llyod.remote.data.model.Schedule
 import com.llyod.remote.data.model.Shows
 import com.llyod.remote.data.remote.FetchData
-import com.llyod.remote.data.repository.ShowListRepositoryImpl
-import com.llyod.remote.domain.repository.ShowListRepository
+import com.llyod.remote.data.repository.ShowRepositoryImpl
+import com.llyod.remote.domain.repository.ShowRepository
 import com.llyod.remote.utils.AppConstants
 import com.llyod.remote.utils.Response
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +34,7 @@ class DetailsTestCase {
         schedule = Schedule(listOf("day1", "day2"), "9:40")
     )
 
-    private lateinit var showListRepository: ShowListRepository
+    private lateinit var showRepository: ShowRepository
     private lateinit var fetchData: FetchData
 
     private val testDispatcher = StandardTestDispatcher()
@@ -43,13 +43,13 @@ class DetailsTestCase {
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         fetchData = mock()
-        showListRepository = ShowListRepositoryImpl(fetchData)
+        showRepository = ShowRepositoryImpl(fetchData)
     }
 
     @Test
     fun `test getShowDetails with success response`(): Unit = runTest {
         whenever(fetchData.getShow(1)).thenReturn(show)
-        val result = showListRepository.getShow(1).toList()
+        val result = showRepository.getShow(1).toList()
         assert(result[0] is Response.Loading)
         assert(result[1] is Response.Success)
         assertEquals(show, (result[1] as Response.Success).data)
@@ -58,7 +58,7 @@ class DetailsTestCase {
     @Test
     fun `test getShow with invalid ID response`(): Unit = runTest {
         whenever(fetchData.getShow(-1)).thenThrow(RuntimeException(AppConstants.API_ERROR_MESSAGE))
-        val result = showListRepository.getShow(-1).toList()
+        val result = showRepository.getShow(-1).toList()
         assert(result[0] is Response.Loading)
         assert(result[1] is Response.Error)
         assertEquals(AppConstants.API_ERROR_MESSAGE, (result[1] as Response.Error).message)

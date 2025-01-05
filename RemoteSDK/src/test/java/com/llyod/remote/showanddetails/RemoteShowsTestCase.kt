@@ -5,8 +5,8 @@ import com.llyod.remote.data.model.Rating
 import com.llyod.remote.data.model.Schedule
 import com.llyod.remote.data.model.Shows
 import com.llyod.remote.data.remote.FetchData
-import com.llyod.remote.data.repository.ShowListRepositoryImpl
-import com.llyod.remote.domain.repository.ShowListRepository
+import com.llyod.remote.data.repository.ShowRepositoryImpl
+import com.llyod.remote.domain.repository.ShowRepository
 import com.llyod.remote.utils.AppConstants
 import com.llyod.remote.utils.Response
 import kotlinx.coroutines.Dispatchers
@@ -45,7 +45,7 @@ class RemoteShowsTestCase {
             schedule = Schedule(listOf("day1", "day2"), "9:40")
         )
     )
-    private lateinit var showListRepository: ShowListRepository
+    private lateinit var showRepository: ShowRepository
     private lateinit var fetchData: FetchData
 
     private val testDispatcher = StandardTestDispatcher()
@@ -54,13 +54,13 @@ class RemoteShowsTestCase {
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         fetchData = mock()
-        showListRepository = ShowListRepositoryImpl(fetchData)
+        showRepository = ShowRepositoryImpl(fetchData)
     }
 
     @Test
     fun `test getShowList with success response`(): Unit = runTest {
         whenever(fetchData.getShowList()).thenReturn(mockedShowsList)
-        val result = showListRepository.getShowList().toList()
+        val result = showRepository.getShowList().toList()
         assert(result[0] is Response.Loading)
         assert(result[1] is Response.Success)
         assertEquals(mockedShowsList, (result[1] as Response.Success).data)
@@ -69,7 +69,7 @@ class RemoteShowsTestCase {
     @Test
     fun `test getShowList with empty response`(): Unit = runTest {
         whenever(fetchData.getShowList()).thenReturn(emptyList())
-        val result = showListRepository.getShowList().toList()
+        val result = showRepository.getShowList().toList()
         assert(result[0] is Response.Loading)
         assert(result[1] is Response.Error)
         assertEquals(AppConstants.API_ERROR_MESSAGE, (result[1] as Response.Error).message)
@@ -78,7 +78,7 @@ class RemoteShowsTestCase {
     @Test
     fun `test getShowList with failure response`(): Unit = runTest {
         whenever(fetchData.getShowList()).thenThrow(RuntimeException(AppConstants.NETWORK_ERROR_MESSAGE))
-        val result = showListRepository.getShowList().toList()
+        val result = showRepository.getShowList().toList()
         assert(result[0] is Response.Loading)
         assert(result[1] is Response.Error)
         assertEquals(AppConstants.NETWORK_ERROR_MESSAGE, (result[1] as Response.Error).message)

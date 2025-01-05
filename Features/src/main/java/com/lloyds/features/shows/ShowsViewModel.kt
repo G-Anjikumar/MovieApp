@@ -2,7 +2,7 @@ package com.lloyds.features.shows
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.llyod.remote.domain.repository.ShowListRepository
+import com.llyod.remote.domain.repository.ShowRepository
 import com.llyod.remote.utils.Response
 import com.llyod.remote.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ShowsViewModel @Inject constructor(
-    private val showListRepository: ShowListRepository
+    private val showRepository: ShowRepository
 ) : ViewModel() {
     private var uiState = MutableStateFlow(UiState())
     var showListState = uiState.asStateFlow()
@@ -24,9 +24,9 @@ class ShowsViewModel @Inject constructor(
         getShowList()
     }
 
-    private fun getShowList() {
+    fun getShowList() {
         viewModelScope.launch {
-            showListRepository.getShowList().collectLatest { response ->
+            showRepository.getShowList().collectLatest { response ->
                 val updateUiState = when (response) {
                     is Response.Loading -> UiState(isLoading = true)
                     is Response.Success -> UiState(

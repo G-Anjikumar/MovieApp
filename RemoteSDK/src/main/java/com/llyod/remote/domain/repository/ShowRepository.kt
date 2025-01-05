@@ -4,7 +4,7 @@ import com.llyod.remote.data.model.Shows
 import com.llyod.remote.utils.Response
 import kotlinx.coroutines.flow.Flow
 
-interface ShowListRepository {
+interface ShowRepository {
 
     fun getShowList(): Flow<Response<List<Shows>>>
 

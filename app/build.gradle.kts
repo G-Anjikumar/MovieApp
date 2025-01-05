@@ -19,7 +19,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunner = "dagger.hilt.android.testing.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -64,39 +63,28 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    testImplementation(libs.junit)
     implementation(project(":Features"))
     implementation(project(":RemoteSDK"))
-    testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    // system UI Controller
-    implementation(libs.accompanist.systemuicontroller)
     // Hilt
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.hilt.work)
     implementation(libs.google.dagger.hilt.android)
     ksp(libs.google.dagger.hilt.android.compiler)
+    implementation(libs.accompanist.systemuicontroller)
 
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
-    testImplementation("com.google.dagger:hilt-android-testing:2.48")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48")
-    // For instrumentation tests
-    androidTestImplementation ("org.mockito:mockito-android:5.4.0")
-//    androidTestImplementation ("org.mockito:mockito-inline:5.4.0")
-    androidTestImplementation ("org.mockito.kotlin:mockito-kotlin:5.0.0")
-    testImplementation("org.mockito:mockito-core:5.5.0")
-
-    // Mockito Kotlin extension
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
-    testImplementation("app.cash.turbine:turbine:0.12.1")
-    androidTestImplementation("app.cash.turbine:turbine:0.12.1")
-    testImplementation ("org.mockito:mockito-inline:4.8.0")
-    testImplementation ("com.google.truth:truth:1.1.5")
-    androidTestImplementation ("androidx.test:runner:1.5.0")
-    androidTestImplementation ("androidx.test:rules:1.5.0")
-
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.dagger.hilt.android.testing)
+    androidTestImplementation(libs.dagger.hilt.android.testing)
+    androidTestImplementation (libs.mockito.android)
+    androidTestImplementation (libs.mockito.kotlin)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin.v410)
+    testImplementation(libs.turbine)
 }

@@ -55,7 +55,6 @@ dependencies {
 //    implementation(libs.androidx.junit.ktx)
     implementation(libs.androidx.ui.test.junit4)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
@@ -86,7 +85,7 @@ dependencies {
     implementation(libs.accompanist.systemuicontroller)
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
     testImplementation("com.google.dagger:hilt-android-testing:2.48")
-//    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48")
     // For instrumentation tests
 //    androidTestImplementation ("org.mockito:mockito-android:5.4.0")
 //    androidTestImplementation ("org.mockito:mockito-inline:5.4.0")
